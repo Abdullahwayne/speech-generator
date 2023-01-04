@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import google from "../assets/google.png";
 import facebook from "../assets/Path 6.png";
+import Header from "../components/header";
 import { userLogin } from "../redux/user.redux";
 
 const Login = () => {
@@ -20,6 +21,7 @@ const Login = () => {
   };
   return (
     <div className="login">
+      <Header/>
       <div className="login-container">
         <h1>Login to your Account</h1>
         <h2>Login to your account using your credentials or Login with your social </h2>

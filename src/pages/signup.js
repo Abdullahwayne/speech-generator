@@ -16,7 +16,7 @@ const Signup = () => {
       const res = await axios.post(process.env.REACT_APP_BASE_URL + "user", data);
       console.log(res);
       if (res.status === 201) {
-        alert("succefsull login");
+        alert("User successfully created");
         navigate("/login");
       }
     } catch (e) {
@@ -54,12 +54,7 @@ const Signup = () => {
             >
               Signup
             </button>
-            <span>
-              <a>→</a> Forget Password
-            </span>
-            <span>
-              Don't have an account? <a>Register</a>
-            </span>
+            
           </div>
           <div className="login-container-fields-right">
             <button>

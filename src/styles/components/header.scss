@@ -21,8 +21,10 @@
         padding-right: 10%;
         span{
             color: white;
+            text-decoration: none;
 
         }
+        a{text-decoration: none;}
     }
 }
 
@@ -55,6 +57,7 @@
                 color: white;
                 font-size: 10px;
                 display: flex;
+                text-decoration: none;
             }
         }
     }
