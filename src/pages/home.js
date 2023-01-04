@@ -244,7 +244,8 @@ const Home = () => {
         },
         { headers: { Authorization: user.token } }
       );
-      console.log(res, "<======== res");
+      console.log(res.data.reply, "<======== res");
+      alert(res.data.reply);
     } catch (e) {
       console.log(e.response.data, "<==== data");
       console.log(e.status);
