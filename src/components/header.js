@@ -19,8 +19,12 @@ const Header = () => {
             <span>Contact Us</span>
             </Link>
             <Link to="/login">
-            <span>Login/Signup</span>
+            <span>Login</span>
             </Link>
+            <Link to="/signup">
+            <span>SignUp</span>
+            </Link>
+
         </div>
 
     </div>

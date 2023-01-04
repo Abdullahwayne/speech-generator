@@ -51,3 +51,190 @@
 
     }
 }
+
+@media only screen and (max-width: 1300px) and (min-width: 765px) {
+    .aboutus{
+        &-top{
+            padding: 10rem;
+            display: flex;
+            background-image: url('../../assets/Component\ 1\ –\ 1.png');
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Poppins;
+            gap: 15px;
+            h1{
+                color: white;
+            }
+            span{
+                color: white;
+            }
+            button{
+                padding: 10px;
+                width: 30%;
+                border-radius: 20px;
+                background-color: $secondaryColor;
+                border: 1px solid $secondaryColor;
+                color: white;
+                font-family: Poppins;
+            }
+           
+        }
+        &-content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            padding: 30px;
+            font-family: Poppins;
+            h1{
+                font-size: 25px;
+            }
+            span{
+                width: 70%;
+            }
+            p{
+                border: 1px solid  #ffb6c1;
+                border-radius: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 38%;
+                background-color: #ffb6c1;
+                color: $secondaryColor;
+                font-style: italic;
+            
+            }
+    
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 763px) and (min-width: 375px) {
+    .aboutus{
+        &-top{
+            padding: 1rem !important;
+            display: flex;
+            background-image: url('../../assets/Component\ 1\ –\ 1.png');
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            font-family: Poppins;
+            gap: 15px;
+            h1{
+                color: white;
+                font-size: 23px;
+                width: 50%;
+            }
+            span{
+                color: white;
+                width: 50%;
+            }
+            button{
+                padding: 10px;
+                width: 30%;
+                border-radius: 20px;
+                background-color: $secondaryColor;
+                border: 1px solid $secondaryColor;
+                color: white;
+                font-family: Poppins;
+            }
+           
+        }
+        &-content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            padding: 30px;
+            font-family: Poppins;
+            h1{
+                font-size: 22px;
+                width: 100%;
+            }
+            span{
+                width: 100%;
+            }
+            p{
+                border: 1px solid  #ffb6c1;
+                border-radius: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 90%;
+                background-color: #ffb6c1;
+                color: $secondaryColor;
+                font-style: italic;
+            
+            }
+    
+        }
+    }
+}
+@media only screen and (max-width: 374px) and (min-width: 200px) {
+    .aboutus{
+        &-top{
+            padding: 1rem !important;
+            display: flex;
+            background-image: url('../../assets/Component\ 1\ –\ 1.png');
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            font-family: Poppins;
+            gap: 15px;
+            h1{
+                color: white;
+                font-size: 23px;
+                width: 50%;
+            }
+            span{
+                color: white;
+                width: 50%;
+            }
+            button{
+                padding: 10px;
+                width: 50%;
+                border-radius: 20px;
+                background-color: $secondaryColor;
+                border: 1px solid $secondaryColor;
+                color: white;
+                font-family: Poppins;
+            }
+           
+        }
+        &-content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            padding: 30px;
+            font-family: Poppins;
+            h1{
+                font-size: 22px;
+                width: 100%;
+            }
+            span{
+                width: 100%;
+            }
+            p{
+                border: 1px solid  #ffb6c1;
+                border-radius: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 99%;
+                background-color: #ffb6c1;
+                color: $secondaryColor;
+                font-style: italic;
+            
+            }
+    
+        }
+    }
+}
