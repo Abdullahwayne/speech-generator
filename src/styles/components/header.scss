@@ -1,0 +1,27 @@
+.header{
+    background-color: $primaryColor;
+    display: flex;
+    justify-content: space-between;
+    &-left{
+        padding-left: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            max-height: 80px;
+            border-radius: 15px;
+        }
+    }
+    &-right{
+        display: flex;
+        gap: 3rem;
+        font-family: Poppins;
+        justify-content: center;
+        align-items: center;
+        padding-right: 10%;
+        span{
+            color: white;
+
+        }
+    }
+}

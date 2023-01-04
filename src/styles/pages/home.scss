@@ -1,0 +1,41 @@
+.home{
+    &-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    gap:20px;
+    padding:10px;
+    button{
+        padding: 15px;
+        width: 20%;
+        border-radius: 20px;
+        background-color: $secondaryColor;
+        border: 1px solid $secondaryColor;
+        color: white;
+        font-family: Poppins;
+    }
+    &-top{
+        font-family: Poppins;
+        padding-top: 30px;
+        color: $primaryColor;
+    }
+    &-content{
+        display: flex;
+// padding-top: 30px;
+flex-direction: column;
+width: 100%;
+gap: 10px;
+
+&-inp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-direction: column;
+    
+}
+    }
+}
+}

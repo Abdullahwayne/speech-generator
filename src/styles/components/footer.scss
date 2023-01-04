@@ -1,0 +1,37 @@
+.footer{
+    width: 100%;
+    background-color: $primaryColor;
+    &-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        gap: 20px;
+        font-family: Poppins;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        h1{
+            color: white;
+        }
+        span{
+            color: white;
+            font-size: 18px;
+            width: 90%;
+            padding-left: 19rem;
+        }
+        button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            width: 30%;
+            border-radius: 20px;
+            background-color: $secondaryColor;
+            border: 1px solid $secondaryColor;
+            color: white;
+            font-family: Poppins;
+        }
+    }   
+}
