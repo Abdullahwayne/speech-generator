@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";  
 import { Link, useNavigate } from "react-router-dom";
 import google from "../assets/google.png";
 import facebook from "../assets/Path 6.png";
 import Header from "../components/header";
-import { userLogin } from "../redux/user.redux";
+import { userLogin, USER_CHANGED } from "../redux/user.redux";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -18,6 +18,10 @@ const Login = () => {
       navigate("/");
     }
     console.log(response);
+  };
+
+  const handleLogout = async () => {
+    await dispatch({ type: USER_CHANGED, payload: { email: "", token: "", id: "" } });
   };
   return (
     <div className="login">

@@ -4,6 +4,7 @@ const initialState = {
   user: {
     email: "",
     token: "",
+    isLoggedIn:false,
   },
 };
 
@@ -22,6 +23,7 @@ export const getUser = (state) => state.user.user;
 //wow
 
 export const USER_CHANGED = "user/userLogin";
+
 
 //actions creator
 
@@ -43,3 +45,4 @@ export const userLogin = (credentails) => {
     }
   };
 };
+

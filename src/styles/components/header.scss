@@ -19,12 +19,23 @@
         justify-content: center;
         align-items: center;
         padding-right: 10%;
+        width: 50%;
         span{
             color: white;
             text-decoration: none;
 
         }
         a{text-decoration: none;}
+        button{
+            display: flex;
+            width: 20%;
+            padding: 5px;
+            background-color: $secondaryColor;
+            border: 1px solid $secondaryColor;
+            border-radius: 10px;
+            color: white;
+            font-family: Poppins;
+        }
     }
 }
 
