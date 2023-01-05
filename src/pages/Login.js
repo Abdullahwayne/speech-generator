@@ -3,21 +3,40 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import google from "../assets/google.png";
 import facebook from "../assets/Path 6.png";
+import { useSnackbar } from 'notistack'
+
 import Header from "../components/header";
 import { userLogin, USER_CHANGED } from "../redux/user.redux";
+import { loginValidations } from "../validation/loginValidations";
 
 const Login = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+
   const navigate = useNavigate();
+
+
+  
   const handleLogin = async () => {
+    try{
     console.log(email, password);
     const response = await dispatch(userLogin({ email, password }));
+    const validatedData = await loginValidations.validate({email,password});
+
+   
     if (response.status === 200) {
+      enqueueSnackbar("Successfully Logged In", {variant:"success"})
       navigate("/");
     }
+    if (response.status === 401){
+      enqueueSnackbar("Incorrect Email or Password" , {variant:"error"})
+    }
     console.log(response);
+  } catch (e) {
+    enqueueSnackbar(e.message, {variant:"error"})
+  }
   };
 
   const handleLogout = async () => {

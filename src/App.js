@@ -14,6 +14,7 @@ import ContactUs from "./pages/contactUs";
 import AboutUs from "./pages/aboutUs";
 import Signup from "./pages/signup";
 import Home from "./pages/home";
+import NotFound from "./pages/notFound";
 
 // function App() {
 //   return (
@@ -49,8 +50,13 @@ const router = createBrowserRouter([
   {
   path: "/",
   element:<Home/>,
+  },
+  {
+    path:"*",
+    element:<NotFound/>
   }
-
+  
+  
 ]);
 
 // function App() {

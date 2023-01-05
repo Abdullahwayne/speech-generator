@@ -3,16 +3,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logoo.png';
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, USER_CHANGED } from '../redux/user.redux';
+import { useSnackbar } from 'notistack'
+
 
 
 const Header = () => {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
-    await dispatch({ type: USER_CHANGED, payload: { email: "", token: "", id: "" } });
-
-
+    await dispatch({ type: USER_CHANGED, payload: null});
+    enqueueSnackbar("Logout Successfully " , {variant:"success"})
+    
   };
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+
   const user = useSelector(getUser);
   const navigate = useNavigate();
   
@@ -33,11 +37,11 @@ const Header = () => {
             <span>Contact Us</span>
             </Link>
           
-            <Link to="/login">
-            <span style={{display : user ? "none" : "block"}}>Login</span>
+            <Link  style={{display : user ? "none" : "block"}} to="/login">
+            <span style={{display :  user ? "none" : "block"}}>Login</span>
             </Link>
-            <Link to="/signup">
-            <span style={{display : user ? "none" : "block"}}>SignUp</span>
+            <Link  style={{display :  user ? "none" : "block"}} to="/signup">
+            <span style={{display :  user  ? "none" : "block"}}>SignUp</span>
             </Link>
 
             <button onClick={()=>{
@@ -46,7 +50,7 @@ const Header = () => {
               
             }
           }
-            style={{display : !user ? "none" : "block"}}>Logout</button>
+            style={{display : user ?  "block" : "none"}}>Logout</button>
 
         </div>
 

@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-
+import { questionSchema } from "../validation/questionValidation";
 import Header from "../components/header";
-import { AutoComplete, Button } from "antd";
+import { AutoComplete, Button, Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { Checkbox, Modal } from "antd";
 import google from "../assets/google.png";
+import { Space, Spin } from "antd";
+import { useSnackbar } from 'notistack'
 
+import { Card } from "antd";
+import * as yup from "yup";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { getUser, userLogin, USER_CHANGED } from "../redux/user.redux";
 import { Link, useNavigate } from "react-router-dom";
+import Footer from "../components/footer";
 
 const mockVal = (str, repeat = 1) => ({
   value: str.repeat(repeat),
@@ -23,18 +28,25 @@ const Home = () => {
   const [question, setQuery] = useState("");
   const [checked, setChecked] = useState(false);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errors , setErrors] = useState("")
+  const [reply, setReply] = useState("");
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
+  const [isEmpty, setIsEmpty] = useState(false);
   const [password, setPassword] = useState("");
   const handleLogin = async () => {
     console.log(email, password);
     const response = await dispatch(userLogin({ email, password }));
     if (response.status === 200) {
-        alert("login successful")
+      alert("login successful");
       setOpen(false);
     }
     console.log(response);
   };
+
   const [occassion, setOccassion] = useState([
     {
       value: "Wedding",
@@ -204,22 +216,30 @@ const Home = () => {
   ]);
   const onSearch = (searchText) => {
     setOccassion(
-      !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
+      !searchText
+        ? []
+        : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
     );
   };
   const onSearchAtmosphere = (searchText) => {
     setAtmosphere(
-      !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
+      !searchText
+        ? []
+        : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
     );
   };
   const onSearchRelation = (searchText) => {
     setRelation(
-      !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
+      !searchText
+        ? []
+        : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
     );
   };
   const onReligiousSearch = (searchText) => {
     setReligious(
-      !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
+      !searchText
+        ? []
+        : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
     );
   };
   const onSelect = (data) => {
@@ -245,9 +265,9 @@ const Home = () => {
     setChat({ ...chat, [key]: value });
   };
   const loggedIn = async () => {
-    await dispatch({ type: USER_CHANGED, payload: { email, password} });
+    await dispatch({ type: USER_CHANGED, payload: { email, password } });
   };
-  console.log(loggedIn, "checking login")
+  console.log(loggedIn, "checking login");
   // const [selectedOccasion, setSelectedOccasion] = useState("");
   // const [selectedAtmosphere, setSelectedAtmosphere] = useState("");
   // const [selectedRelation, setSelectedRelation] = useState("");
@@ -255,32 +275,49 @@ const Home = () => {
   // const [selectedReligion, setSelectedReligion] = useState("");
 
   const handleSubmit = async () => {
+   
     try {
-        if(user) {
-            
+        setLoading(true);
+      if (user) { 
+        const validatedData = await questionSchema.validate(chat);
+        let query = `write a speech for ${chat.selectedOccasion} for ${chat.selectedRelation} as ${chat.selectedRole} in a ${chat.selectedAtmosphere} tone `;
+        if (checked) query = query + `with ${chat.selectedReligion} intent`;
+        const res = await axios.post(
+          process.env.REACT_APP_BASE_URL + "product",
+          {
+            question: query,
+          },
+          { headers: { Authorization: user.token } }
+        );
+
+        console.log(res.data.reply, "<======== res");
+        setLoading(false);
+        //   alert(res.data.reply);
+        setReply(res.data.reply);
         
-      let query = `write a speech for ${chat.selectedOccasion} for ${chat.selectedRelation} as ${chat.selectedRole} in a ${chat.selectedAtmosphere} tone `;
-      if (checked) query = query + `with ${chat.selectedReligion} intent`;
-      const res = await axios.post(
-        process.env.REACT_APP_BASE_URL + "product",
-        {
-          question: query,
-        },
-        { headers: { Authorization: user.token } }
-      );
-      console.log(res.data.reply, "<======== res");
-      alert(res.data.reply);
-    } else{
-        setOpen(true)
-    }
+      } else {
+        setOpen(true);
+        setLoading(false)
+      }
     } catch (e) {
-      console.log(e.response.data, "<==== data");
+        setLoading(false);
+        setErrors(e)
+      console.log(e);
+    //   console.log(e.response.data, "<==== data");
       console.log(e.status);
-      if (e.response && e.response.status === 400 && e.response.data == "Invalid Token") {
-        alert("login again");
+      enqueueSnackbar(e.message, {variant:"error"})
+      
+      
+      if (
+        e.response &&
+        e.response.status === 400 &&
+        e.response.data == "Invalid Token"
+      ) {
+        enqueueSnackbar("successfully logged in " , {variant :"success"})
         navigate("/login");
       }
       console.log(e.status);
+    //   alert(e)
     }
   };
 
@@ -289,17 +326,22 @@ const Home = () => {
   return (
     <div className="home">
       <Header />
+
+
       <div className="home-container">
         <div className="home-container-top">
-          <h1 onClick={() => console.log(chat)}>Welcome to the Speech page</h1>
+          {/* <h1 onClick={() => console.log(chat)}>Welcome to the Speech page</h1> */}
         </div>
         <div className="home-container-content">
           <div className="home-container-content-inp">
-            <h3>Your Occassion :</h3>
+            <span>Hi, help me write</span>
             <AutoComplete
               options={occassion}
               style={{
-                width: "50%",
+                width: "15%",
+                border: "0px solid white",
+                color: "red",
+                fontFamily: "Poppins",
               }}
               onSelect={(e) => {
                 changeChat("selectedOccasion", e);
@@ -310,26 +352,32 @@ const Home = () => {
               onChange={(e) => {
                 changeChat("selectedOccasion", e);
               }}
-              placeholder="Select or Enter Occassion"
+              placeholder="OCCASION"
             >
-              <TextArea
+              <Input
                 placeholder=""
                 className="custom"
                 style={{
-                  height: 50,
+                  height: 30,
+                  border: "0px solid white",
+                    display:"flex",
+                    justifyContent:"center",
+                    alignItems:"center"
                 }}
                 onChange={onChange}
               />
             </AutoComplete>
+            <span>speech,</span>
             <br />
             <br />
           </div>
           <div className="home-container-content-inp">
-            <h3>Your Atmosphere :</h3>
+            <span>I think it should have a</span>
             <AutoComplete
               options={atmosphere}
               style={{
-                width: "50%",
+                width: "15%",
+                border: "0px solid white",
               }}
               onSelect={(e) => {
                 changeChat("selectedAtmosphere", e);
@@ -340,26 +388,30 @@ const Home = () => {
               onChange={(e) => {
                 changeChat("selectedAtmosphere", e);
               }}
-              placeholder="Select or Enter Atmosphere"
+              placeholder="Atmosphere"
             >
-              <TextArea
+              <Input
                 placeholder=""
                 className="custom"
                 style={{
-                  height: 50,
+                  height: 30,
+                  border: "0px solid white",
                 }}
                 onChange={onChange}
               />
             </AutoComplete>
+            <span>vibe.</span>
+
             <br />
             <br />
           </div>
           <div className="home-container-content-inp">
-            <h3>Who are you writing to :</h3>
+            <span>I am writing to </span>
             <AutoComplete
               options={relation}
               style={{
-                width: "50%",
+                width: "15%",
+                border: "0px solid white",
               }}
               onSelect={(e) => {
                 changeChat("selectedRelation", e);
@@ -370,13 +422,14 @@ const Home = () => {
               onChange={(e) => {
                 changeChat("selectedRelation", e);
               }}
-              placeholder="Select or Enter the Relation or the Person"
+              placeholder="Relation"
             >
-              <TextArea
+              <Input
                 placeholder=""
                 className="custom"
                 style={{
-                  height: 50,
+                  height: 30,
+                  border: "0px solid white",
                 }}
                 onChange={onChange}
               />
@@ -385,11 +438,12 @@ const Home = () => {
             <br />
           </div>
           <div className="home-container-content-inp">
-            <h3>What is your Role :</h3>
+            <span>Oh and by the way, my role in the OCCASION is </span>
             <AutoComplete
               options={role}
               style={{
-                width: "50%",
+                width: "20%",
+                border: "0px solid white",
               }}
               onSelect={(e) => {
                 changeChat("selectedRole", e);
@@ -400,13 +454,14 @@ const Home = () => {
               onChange={(e) => {
                 changeChat("selectedRole", e);
               }}
-              placeholder="Select or Enter the Relation or the Person"
+              placeholder="USER ROLE"
             >
-              <TextArea
+              <Input
                 placeholder=""
                 className="custom"
                 style={{
-                  height: 50,
+                  height: 30,
+                  border: "0px solid white",
                 }}
                 onChange={onChange}
               />
@@ -415,7 +470,7 @@ const Home = () => {
             <br />
           </div>
           <div className="home-container-content-inp">
-            <h4>DO YOU WISH TO INCLUDE A RELIGIOUS TONE TO YOUR SPEECH?</h4>
+            <span>Oh and I want to add</span>
             <Checkbox
               onClick={() => {
                 setChecked(!checked);
@@ -423,15 +478,17 @@ const Home = () => {
               }}
               style={{
                 display: checked ? "none" : "flex",
+                paddingLeft: "5px",
               }}
             >
-              Checkbox
+              check if yes
             </Checkbox>
             <AutoComplete
               options={religious}
               style={{
                 display: checked ? "block" : "none",
-                width: "50%",
+                width: "15%",
+                border: "0px solid white",
               }}
               onSelect={(e) => {
                 changeChat("selectedReligion", e);
@@ -442,80 +499,138 @@ const Home = () => {
               onChange={(e) => {
                 changeChat("selectedReligion", e);
               }}
-              placeholder="Select your Religious Tone"
+              placeholder="Relgion"
             >
-              <TextArea
+             <Input
                 placeholder=""
                 className="custom"
                 style={{
-                  height: 50,
+                  height: 30,
+                  border: "0px solid white",
                 }}
                 onChange={onChange}
               />
             </AutoComplete>
+            <span>tone</span>
+
             <br />
             <br />
           </div>
         </div>
         <div className="home-container-login">
-        {/* <Button type="primary" onClick={() => setOpen(true)}>
+          {/* <Button type="primary" onClick={() => setOpen(true)}>
         Open Modal of 1000px width
       </Button> */}
-      <Modal
-        title=""
-        centered
-        open={open}
-        onOk={() => setOpen(false)}
-        onCancel={() => setOpen(false)}
-        width={1000}
-      >
-        <div className="login-container">
-        <h1>Login to your Account</h1>
-        <h2>Login to your account using your credentials or Login with your social </h2>
-        <div className="login-container-fields">
-          <div className="login-container-fields-left">
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              type="text"
-              placeholder="Email"
-              value={email}
-            ></input>
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            ></input>
-            <button
-              onClick={() => {
-                handleLogin();
-              }}
-            >
-              Login
-            </button>
-            <span>
-              <a>→</a> Forget Password
-            </span>
-            <span>
-              Don't have an account?{" "}
-              <Link to="/signup">
-                <a>Register</a>
-              </Link>
-            </span>
-          </div>
-          <div className="login-container-fields-right">
-            <button>
-              <img src={google} alt="" /> Sign in with Google
-            </button>
-            {/* <button>
+          <Modal
+            title=""
+            centered
+            open={open}
+            onOk={() => setOpen(false)}
+            onCancel={() => setOpen(false)}
+            width={1000}
+          >
+            <div className="login-container">
+              <h1>Login to your Account</h1>
+              <h2>
+                Login to your account using your credentials or Login with your
+                social{" "}
+              </h2>
+              <div className="login-container-fields">
+                <div className="login-container-fields-left">
+                  <input
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="text"
+                    placeholder="Email"
+                    value={email}
+                  ></input>
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                  ></input>
+                  <button
+                    onClick={() => {
+                      handleLogin();
+                    }}
+                  >
+                    Login
+                  </button>
+                  <span>
+                    <a>→</a> Forget Password
+                  </span>
+                  <span>
+                    Don't have an account?{" "}
+                    <Link to="/signup">
+                      <a>Register</a>
+                    </Link>
+                  </span>
+                </div>
+                <div className="login-container-fields-right">
+                  <button>
+                    <img src={google} alt="" /> Sign in with Google
+                  </button>
+                  {/* <button>
               <img src={facebook} alt="" /> Sign in with Google
             </button> */}
-          </div>
+                </div>
+              </div>
+            </div>
+          </Modal>
+        </div>
+        <div className="home-container-prompt">
+          {/* <Input
+      showCount
+      disabled
+    //   maxLength={1000}
+      style={{
+        height: 120,
+        width:600,
+       
+        backgroundColor:"gray",
+        borderRadius:"15px",
+      }}
+      value={reply}
+     
+      placeholder="Prompt reply from GPT"
+    ></Input> */}
+
+          <Card
+            style={{
+              width: 400,
+              minHeight: 50,
+              backgroundColor: "#F0F0F0",
+              color: "black",
+            }}
+          >
+            {!reply ? <span>Prompt reply from GPT</span> : <span>{reply}</span>}
+          </Card>
+        </div>
+        <div className="home-container-but">
+          {loading ? (
+            <Spin spinning={loading} size="large"></Spin>
+          ) : (
+            <button
+              
+              onClick={() => {
+                
+            handleSubmit()
+          
+              }
+            
+            }
+            >
+              {" "}
+              Submit{" "}
+            </button>
+          )}
+          {/* <button onClick={()=>{
+            enqueueSnackbar('error running', {variant:"success"})
+          }}></button> */}
         </div>
       </div>
-      </Modal>
-      </div>
-        <button onClick={() => handleSubmit()}> Submit </button>
+      <div className="home-footer">
+        <Footer />
       </div>
     </div>
   );

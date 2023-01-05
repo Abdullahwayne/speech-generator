@@ -4,12 +4,8 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="footer-content">
-        <h1>Contact Us Now </h1>
-        <span>
-          We believe in supporting small creative idea for generating speeches across the world
-          to wish their goodones 
-        </span>
-        <button>Contact Us</button>
+        <span>We have helped 2.122 people write 23,000 speeches </span>
+      
       </div>
     </div>
   );
