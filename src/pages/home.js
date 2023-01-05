@@ -261,6 +261,10 @@ const Home = () => {
     selectedReligion: "",
   });
 
+
+
+  
+
   const changeChat = (key, value) => {
     setChat({ ...chat, [key]: value });
   };
