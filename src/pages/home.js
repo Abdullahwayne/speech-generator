@@ -324,16 +324,21 @@ const Home = () => {
   useEffect(() => {}, [checked]);
 
   return (
-    <div className="home">
+    <div className="home" >
       <Header />
 
+      <div className="home-parent">
 
-      <div className="home-container">
-        <div className="home-container-top">
+        <div className="home-parent-left">
+
+        </div>
+
+         <div className="home-parent-container">
+        <div className="home-parent-container-top">
           {/* <h1 onClick={() => console.log(chat)}>Welcome to the Speech page</h1> */}
         </div>
-        <div className="home-container-content">
-          <div className="home-container-content-inp">
+        <div className="home-parent-container-content">
+          <div className="home-parent-container-content-inp">
             <span>Hi, help me write</span>
             <AutoComplete
               options={occassion}
@@ -371,7 +376,7 @@ const Home = () => {
             <br />
             <br />
           </div>
-          <div className="home-container-content-inp">
+          <div className="home-parent-container-content-inp">
             <span>I think it should have a</span>
             <AutoComplete
               options={atmosphere}
@@ -405,7 +410,7 @@ const Home = () => {
             <br />
             <br />
           </div>
-          <div className="home-container-content-inp">
+          <div className="home-parent-container-content-inp">
             <span>I am writing to </span>
             <AutoComplete
               options={relation}
@@ -437,7 +442,7 @@ const Home = () => {
             <br />
             <br />
           </div>
-          <div className="home-container-content-inp">
+          <div className="home-parent-container-content-inp">
             <span>Oh and by the way, my role in the OCCASION is </span>
             <AutoComplete
               options={role}
@@ -469,7 +474,7 @@ const Home = () => {
             <br />
             <br />
           </div>
-          <div className="home-container-content-inp">
+          <div className="home-parent-container-content-inp">
             <span>Oh and I want to add</span>
             <Checkbox
               onClick={() => {
@@ -517,7 +522,7 @@ const Home = () => {
             <br />
           </div>
         </div>
-        <div className="home-container-login">
+        <div className="home-parent-container-login">
           {/* <Button type="primary" onClick={() => setOpen(true)}>
         Open Modal of 1000px width
       </Button> */}
@@ -578,7 +583,7 @@ const Home = () => {
             </div>
           </Modal>
         </div>
-        <div className="home-container-prompt">
+        <div className="home-parent-container-prompt">
           {/* <Input
       showCount
       disabled
@@ -606,7 +611,7 @@ const Home = () => {
             {!reply ? <span>Prompt reply from GPT</span> : <span>{reply}</span>}
           </Card>
         </div>
-        <div className="home-container-but">
+        <div className="home-parent-container-but">
           {loading ? (
             <Spin spinning={loading} size="large"></Spin>
           ) : (
@@ -629,6 +634,12 @@ const Home = () => {
           }}></button> */}
         </div>
       </div>
+
+      </div>
+
+ 
+
+
       <div className="home-footer">
         <Footer />
       </div>
