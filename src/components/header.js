@@ -27,20 +27,20 @@ const Header = () => {
     <img src={logo} alt=""/>
         </div>
         <div className='header-right'>
-          <Link to="/">
+          <Link style={{textDecoration:"none"}}to="/">
             <span>Home </span>
             </Link>
-            <Link to="/aboutus">
+            <Link style={{textDecoration:"none"}} to="/aboutus">
             <span>About Us</span>
             </Link>
-            <Link to="/contactus">
+            <Link style={{textDecoration:"none"}} to="/contactus">
             <span>Contact Us</span>
             </Link>
           
-            <Link  style={{display : user ? "none" : "block"}} to="/login">
+            <Link style={{textDecoration:"none"}}  style={{display : user ? "none" : "block"}} to="/login">
             <span style={{display :  user ? "none" : "block"}}>Login</span>
             </Link>
-            <Link  style={{display :  user ? "none" : "block"}} to="/signup">
+            <Link style={{textDecoration:"none"}}  style={{display :  user ? "none" : "block"}} to="/signup">
             <span style={{display :  user  ? "none" : "block"}}>SignUp</span>
             </Link>
 
