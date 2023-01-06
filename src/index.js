@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import { SnackbarProvider } from 'notistack'
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -19,10 +20,13 @@ root.render(
    
 
     <React.StrictMode>
+    <GoogleOAuthProvider clientId="1029246771689-999m56n99msn9jhsv9du0la391hcf43o.apps.googleusercontent.com">
       <SnackbarProvider>
       {/* <App /> */}
       <RouterProvider router={router} />
       </SnackbarProvider>
+      </GoogleOAuthProvider>
+
 
       
     </React.StrictMode>

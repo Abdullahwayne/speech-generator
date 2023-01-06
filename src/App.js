@@ -15,6 +15,9 @@ import AboutUs from "./pages/aboutUs";
 import Signup from "./pages/signup";
 import Home from "./pages/home";
 import NotFound from "./pages/notFound";
+import ForgetPassword from "./pages/forgetPassword";
+import Otp from "./pages/otp";
+import NewPassword from "./pages/newPassword";
 
 // function App() {
 //   return (
@@ -51,6 +54,18 @@ const router = createBrowserRouter([
   path: "/",
   element:<Home/>,
   },
+  {
+    path: "/forgetpassword",
+    element:<ForgetPassword/>,
+    },
+    {
+      path: "/otp",
+      element:<Otp/>,
+      },
+      {
+        path: "/changepassword",
+        element:<NewPassword/>,
+        },
   {
     path:"*",
     element:<NotFound/>

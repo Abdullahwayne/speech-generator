@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { getUser, userLogin, USER_CHANGED } from "../redux/user.redux";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/footer";
+import { GoogleLogin } from "@react-oauth/google";
 
 const mockVal = (str, repeat = 1) => ({
   value: str.repeat(repeat),
@@ -576,9 +577,15 @@ const Home = () => {
                   </span>
                 </div>
                 <div className="login-container-fields-right">
-                  <button>
-                    <img src={google} alt="" /> Sign in with Google
-                  </button>
+                <GoogleLogin
+        onSuccess={(credentialResponse) => {
+          console.log(credentialResponse);
+        }}
+        style={{background:"purple"}}
+        onError={() => {
+          console.log("Login Failed");
+        }}
+      />
                   {/* <button>
               <img src={facebook} alt="" /> Sign in with Google
             </button> */}
@@ -607,7 +614,7 @@ const Home = () => {
           <Card
             style={{
               width: 400,
-              minHeight: 50,
+              minHeight: 100,
               backgroundColor: "#F0F0F0",
               color: "black",
             }}

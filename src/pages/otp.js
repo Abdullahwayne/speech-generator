@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,9 +8,11 @@ import Header from "../components/header";
 import { useSnackbar } from 'notistack'
 
 
-const Signup = () => {
+const Otp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [otp, setOtp] = useState("");
+
   const navigate = useNavigate();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
@@ -34,42 +37,35 @@ const Signup = () => {
     <div className="login">
       <Header />
       <div className="login-container">
-        <h1>Signup your Account</h1>
-        <h2>Don't have an account? You can signup with the credentials or social </h2>
+        <h1>OTP</h1>
+        <h2>Enter your one time password </h2>
         <div className="login-container-fields">
           <div className="login-container-fields-left">
             <input
               type="text"
-              placeholder="Email"
+              placeholder="OTP"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setOtp(e.target.value)}
               required
             ></input>
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            ></input>
+            
             <button
               onClick={() => {
                 handleSignup();
               }}
             >
-              Signup
+              Submit
             </button>
             
           </div>
-          <div className="login-container-fields-right">
-            <button>
-              <img src={google} alt="" /> Signup with Google
-            </button>
-          </div>
+          
         </div>
       </div>
     </div>
   );
 };
 
-export default Signup;
+
+
+
+export default Otp

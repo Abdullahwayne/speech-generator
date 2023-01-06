@@ -1,0 +1,286 @@
+.login{
+    &-container{
+        display: flex;
+        justify-content: center;
+        font-family: Poppins;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 30px;
+        gap: 30px;
+        h1{
+           font-size: 32px;
+
+        }
+        h2{
+            font-size: 20px;
+            font-weight: 300;
+            color: #606060;
+
+        }
+
+&-fields{ 
+    display: flex;
+    // justify-content: center;
+  
+    // align-items: center;
+    width: 100%;
+    padding-bottom: 20px;
+    &-left{
+        padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 25px;
+        input{
+            padding: 20px;
+            width: 30%;
+            border-radius: 20px;
+         border: 1px  solid #F9F9F9;
+            background-color: #F9F9F9;
+        }
+    input::placeholder {
+            color: #858585;
+            font-family: Poppins;
+        }
+       
+        button{
+            padding: 15px;
+            width: 15%;
+            border-radius: 20px;
+            background-color: $secondaryColor;
+            border: 1px solid $secondaryColor;
+            color: white;
+            font-family: Poppins;
+            
+        
+    }
+    span{
+        font-family: Poppins;
+        
+    }
+    a{font-family: Poppins;
+        color: $secondaryColor;
+    }
+    }
+    &-right{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+        button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            width: 90%;
+            border-radius: 20px;
+            background-color: $secondaryColor;
+            border: 1px solid $secondaryColor;
+            color: white;
+            font-family: Poppins;
+        }
+    }
+    }
+    }
+}
+
+@media only screen and (max-width:900px) and (min-width: 700px) {
+    .login{
+        &-container{
+            display: flex;
+            justify-content: center;
+            font-family: Poppins;
+            align-items: center;
+            flex-direction: column;
+            padding-top: 30px;
+            gap: 30px;
+            h1{
+               font-size: 32px;
+    
+            }
+            h2{
+                font-size: 20px;
+                font-weight: 300;
+                color: #606060;
+    
+            }
+    
+    &-fields{ 
+        display: flex;
+        // justify-content: center;
+      
+        // align-items: center;
+        width: 100%;
+        padding-bottom: 20px;
+        &-left{
+            padding-top: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+            gap: 25px;
+            input{
+                padding: 20px;
+                width: 45%;
+                border-radius: 20px;
+             border: 1px  solid #F9F9F9;
+                background-color: #F9F9F9;
+            }
+        input::placeholder {
+                color: #858585;
+                font-family: Poppins;
+            }
+           
+            button{
+                padding: 15px;
+                width: 50% !important;
+                border-radius: 20px;
+                background-color: $secondaryColor;
+                border: 1px solid $secondaryColor;
+                color: white;
+                font-family: Poppins;
+                
+            
+        }
+        span{
+            font-family: Poppins;
+            
+        }
+        a{font-family: Poppins;
+            color: $secondaryColor;
+        }
+        }
+        &-right{
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            button{
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                padding: 15px;
+                width: 100% !important;
+                border-radius: 20px;
+                background-color: $secondaryColor;
+                border: 1px solid $secondaryColor;
+                
+                color: white;
+                font-family: Poppins;
+                
+            }
+        }
+        }
+        }
+    }
+}
+
+@media only screen and (max-width:699px) and (min-width: 200px) {
+    .login{
+        &-container{
+            display: flex;
+            justify-content: center;
+            font-family: Poppins;
+            align-items: center;
+            flex-direction: column;
+            padding-top: 30px;
+            gap: 30px;
+            padding:5px;
+            h1{
+               font-size: 32px;
+    
+            }
+            h2{
+                font-size: 16px !important;
+                font-weight: 300;
+                color: #606060;
+    
+            }
+    
+    &-fields{ 
+        display: flex;
+        justify-content: center;
+      flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding-bottom: 20px;
+        &-left{
+            padding-top: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            gap: 25px;
+            padding-bottom: 30px;
+            input{
+                padding: 20px;
+                width: 80% !important;
+                border-radius: 20px;
+             border: 1px  solid #F9F9F9;
+                background-color: #F9F9F9;
+            }
+        input::placeholder {
+                color: #858585;
+                font-family: Poppins;
+            }
+           
+            button{
+                padding: 15px;
+                width: 50% !important;
+                border-radius: 20px;
+                background-color: $secondaryColor;
+                border: 1px solid $secondaryColor;
+                color: white;
+                font-family: Poppins;
+                
+            
+        }
+        span{
+            font-family: Poppins;
+            display: flex;
+
+            
+        }
+        a{font-family: Poppins;
+            color: $secondaryColor;
+        }
+        }
+        &-right{
+            width: 100% !important;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            button{
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                padding: 15px;
+                width: 70% !important;
+                border-radius: 20px;
+                background-color: $secondaryColor;
+                border: 1px solid $secondaryColor;
+                
+                color: white;
+                font-family: Poppins;
+                
+            }
+        }
+        }
+        }
+    }
+}

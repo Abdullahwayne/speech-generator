@@ -7,7 +7,7 @@ import Header from "../components/header";
 import { useSnackbar } from 'notistack'
 
 
-const Signup = () => {
+const NewPassword = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -31,23 +31,23 @@ const Signup = () => {
     }
   };
   return (
-    <div className="login">
+    <div className="logina">
       <Header />
-      <div className="login-container">
-        <h1>Signup your Account</h1>
-        <h2>Don't have an account? You can signup with the credentials or social </h2>
-        <div className="login-container-fields">
-          <div className="login-container-fields-left">
+      <div className="logina-container">
+        <h1>Change Your Password</h1>
+        <h2>Enter your new password</h2>
+        <div className="logina-container-fields">
+          <div className="logina-container-fields-left">
             <input
-              type="text"
-              placeholder="Email"
+              type="password"
+              placeholder="New Password"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             ></input>
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Confirm Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -57,19 +57,15 @@ const Signup = () => {
                 handleSignup();
               }}
             >
-              Signup
+              Submit
             </button>
             
           </div>
-          <div className="login-container-fields-right">
-            <button>
-              <img src={google} alt="" /> Signup with Google
-            </button>
-          </div>
+        
         </div>
       </div>
     </div>
   );
 };
 
-export default Signup;
+export default NewPassword;

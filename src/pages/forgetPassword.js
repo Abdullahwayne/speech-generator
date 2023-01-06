@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +8,7 @@ import Header from "../components/header";
 import { useSnackbar } from 'notistack'
 
 
-const Signup = () => {
+const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -34,8 +35,8 @@ const Signup = () => {
     <div className="login">
       <Header />
       <div className="login-container">
-        <h1>Signup your Account</h1>
-        <h2>Don't have an account? You can signup with the credentials or social </h2>
+        <h1>Forgot Password</h1>
+        <h2>Enter your email </h2>
         <div className="login-container-fields">
           <div className="login-container-fields-left">
             <input
@@ -45,31 +46,24 @@ const Signup = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             ></input>
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            ></input>
+            
             <button
               onClick={() => {
                 handleSignup();
               }}
             >
-              Signup
+              Forget Password
             </button>
             
           </div>
-          <div className="login-container-fields-right">
-            <button>
-              <img src={google} alt="" /> Signup with Google
-            </button>
-          </div>
+          
         </div>
       </div>
     </div>
   );
 };
 
-export default Signup;
+
+
+
+export default ForgetPassword

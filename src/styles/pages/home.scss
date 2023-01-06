@@ -1,8 +1,43 @@
+.home-parent-container-content>div:nth-child(1)>span{
+    flex: 0 0 22%;
+    
+}
+.home-parent-container-content>div:nth-child(1)>div{
+    flex: 0 0 25% ;
+}
+.home-parent-container-content>div:nth-child(2)>span{
+    flex: 0 0 30%;
+}
+.home-parent-container-content>div:nth-child(2)>div{
+    flex: 0 0 23%;
+}
+.home-parent-container-content>div:nth-child(3)>span{
+    flex: 0 0 19%;
+}
+.home-parent-container-content>div:nth-child(3)>div{
+    flex: 0 0 40%;
+}
+
+.home-parent-container-content>div:nth-child(4)>div{
+    flex: 0 0 30%;
+}
+
+span.ant-select-selection-search::after {
+    content: url('../../assets/inputa.gif');
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 span.ant-select-selection-placeholder{
     color: maroon !important;
 }
 
 .home{
+    // input{
+    //     box-shadow: 1px 9px 9px 4px #bcbcbc;
+    // }
     &-footer{
         display: flex;
     }
@@ -73,7 +108,7 @@ text-align: left;
     font-family: Poppins;
     font-size: 15px;
     width: 100%;
-    
+    gap: 15px;
     // gap: 50px;
     // flex-direction: column;
     &-auto::placeholder{
@@ -390,33 +425,7 @@ text-align: left;
         }
     }
 
-    @media  (max-width:767px) {
-        .ant-card.ant-card-bordered.css-dev-only-do-not-override-k83k30{
-            width: 100% !important ;
-        }
-        
-        .home{
-            &-footer{
-                display: flex;
-            }
-            &-parent{
-                background-image: url('../../assets/Artboard-1@4x.png');
-                align-items: center;
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center bottom;
-                min-height: 86vh;
-                display: flex;
-                &-left{width:100% ;
-                    display: none;
-                    
-                }
-                &-container{
-                    padding: 20px;
-                }
-            }
-        }
-    }
+   
          
     @media only screen and (max-width: 500px) and (min-width: 200px) {
         br{display: none;}
@@ -540,3 +549,32 @@ text-align: left;
     }
     }
 
+    @media  (max-width:768px) {
+        .ant-card.ant-card-bordered.css-dev-only-do-not-override-k83k30{
+            width: 100% !important ;
+        }
+        // .home-parent-container-content>div:nth-child(4)>div{
+        //     flex: 0 0 30% !important;
+        // }
+        .home{
+            &-footer{
+                display: flex;
+            }
+            &-parent{
+                background-image: url('../../assets/Artboard-1@4x.png');
+                align-items: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center bottom;
+                min-height: 86vh;
+                display: flex;
+                &-left{width:100% ;
+                    display: none;
+                    
+                }
+                &-container{
+                    padding: 20px;
+                }
+            }
+        }
+    }

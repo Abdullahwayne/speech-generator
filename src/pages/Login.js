@@ -8,11 +8,15 @@ import { useSnackbar } from 'notistack'
 import Header from "../components/header";
 import { userLogin, USER_CHANGED } from "../redux/user.redux";
 import { loginValidations } from "../validation/loginValidations";
+import { GoogleLogin } from "@react-oauth/google";
+import { Spin } from "antd";
 
 const Login = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
   const navigate = useNavigate();
@@ -21,25 +25,32 @@ const Login = () => {
   
   const handleLogin = async () => {
     try{
+      setLoading(true)
     console.log(email, password);
     const response = await dispatch(userLogin({ email, password }));
     const validatedData = await loginValidations.validate({email,password});
 
    
     if (response.status === 200) {
+      setLoading(false)
       enqueueSnackbar("Successfully Logged In", {variant:"success"})
       navigate("/");
     }
     if (response.status === 401){
+      setLoading(false)
+
       enqueueSnackbar("Incorrect Email or Password" , {variant:"error"})
     }
     console.log(response);
   } catch (e) {
+    setLoading(false)
+
     enqueueSnackbar(e.message, {variant:"error"})
   }
   };
 
   const handleLogout = async () => {
+    
     await dispatch({ type: USER_CHANGED, payload: { email: "", token: "", id: "" } });
   };
   return (
@@ -62,13 +73,14 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             ></input>
-            <button
+            {loading ? (<Spin spinning={loading} size="large"></Spin>) : (<button
               onClick={() => {
                 handleLogin();
               }}
             >
               Login
-            </button>
+            </button>)}
+            
             <span>
               <a>→</a> Forget Password
             </span>
@@ -80,12 +92,21 @@ const Login = () => {
             </span>
           </div>
           <div className="login-container-fields-right">
-            <button>
-              <img src={google} alt="" /> Sign in with Google
-            </button>
-            <button>
+           
+              {/* <img src={google} alt="" />  */}
+              <GoogleLogin
+        onSuccess={(credentialResponse) => {
+          console.log(credentialResponse);
+        }}
+        style={{background:"purple"}}
+        onError={() => {
+          console.log("Login Failed");
+        }}
+      />
+          
+            {/* <button>
               <img src={facebook} alt="" /> Sign in with Google
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
