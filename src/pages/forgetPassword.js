@@ -32,13 +32,13 @@ const ForgetPassword = () => {
     }
   };
   return (
-    <div className="login">
+    <div className="flogin">
       <Header />
-      <div className="login-container">
+      <div className="flogin-container">
         <h1>Forgot Password</h1>
         <h2>Enter your email </h2>
-        <div className="login-container-fields">
-          <div className="login-container-fields-left">
+        <div className="flogin-container-fields">
+          <div className="flogin-container-fields-left">
             <input
               type="text"
               placeholder="Email"

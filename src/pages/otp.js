@@ -34,13 +34,13 @@ const Otp = () => {
     }
   };
   return (
-    <div className="login">
+    <div className="ologin">
       <Header />
-      <div className="login-container">
+      <div className="ologin-container">
         <h1>OTP</h1>
         <h2>Enter your one time password </h2>
-        <div className="login-container-fields">
-          <div className="login-container-fields-left">
+        <div className="ologin-container-fields">
+          <div className="ologin-container-fields-left">
             <input
               type="text"
               placeholder="OTP"

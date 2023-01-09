@@ -27,8 +27,9 @@ span.ant-select-selection-search::after {
     width: 30px;
     height: 30px;
     position: absolute;
-    top: 0;
+    top: 5px;
     right: 0;
+
 }
 span.ant-select-selection-placeholder{
     color: maroon !important;
@@ -194,7 +195,7 @@ text-align: left;
     // padding-top: 30px;
     flex-direction: column;
     width: 100%;
-    // gap: 10px;   
+    gap: 10px;   
     padding-left: 10rem;
     
     &-inp{
@@ -577,4 +578,18 @@ text-align: left;
                 }
             }
         }
+    }
+
+    @media only screen and (max-width:1024px) and (min-width: 200px) {
+    .home{
+        &-parent{
+            &-left{}
+            &-container{
+                &-content{
+                    gap: 15px;
+                }
+            }
+        }
+    }
+    
     }

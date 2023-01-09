@@ -42,7 +42,7 @@ const Home = () => {
     console.log(email, password);
     const response = await dispatch(userLogin({ email, password }));
     if (response.status === 200) {
-      alert("login successful");
+     enqueueSnackbar("Successfully Logged In " , {variant:"success"})
       setOpen(false);
     }
     console.log(response);
@@ -50,7 +50,7 @@ const Home = () => {
 
   const [occassion, setOccassion] = useState([
     {
-      value: "Wedding",
+      value: "Wedding", 
     },
     {
       value: "Birthday",
@@ -294,6 +294,7 @@ const Home = () => {
           },
           { headers: { Authorization: user.token } }
         );
+        setLoading(false);
 
         console.log(res.data.reply, "<======== res");
         setLoading(false);
@@ -310,7 +311,7 @@ const Home = () => {
       console.log(e);
     //   console.log(e.response.data, "<==== data");
       console.log(e.status);
-      enqueueSnackbar(e.message, {variant:"error"})
+     setTimeout( enqueueSnackbar(e.message, {variant:"error"})  , 3000)
       
       
       if (
@@ -318,7 +319,8 @@ const Home = () => {
         e.response.status === 400 &&
         e.response.data == "Invalid Token"
       ) {
-        enqueueSnackbar("successfully logged in " , {variant :"success"})
+        setTimeout(  enqueueSnackbar("successfully logged in " , {variant :"success"}), 3000)
+      
         navigate("/login");
       }
       console.log(e.status);
@@ -559,13 +561,14 @@ const Home = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                   ></input>
-                  <button
-                    onClick={() => {
-                      handleLogin();
-                    }}
-                  >
-                    Login
-                  </button>
+                  {loading ? (<Spin spinning={loading} size="large"></Spin>) : (<button
+              onClick={() => {
+                handleLogin();
+              }}
+            >
+              Login
+            </button>)}
+
                   <span>
                     <a>→</a> Forget Password
                   </span>

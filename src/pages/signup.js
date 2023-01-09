@@ -5,16 +5,19 @@ import google from "../assets/google.png";
 import facebook from "../assets/Path 6.png";
 import Header from "../components/header";
 import { useSnackbar } from 'notistack'
+import { Spin } from "antd";
 
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
   const handleSignup = async () => {
     const data = { email, password };
+    setLoading(true)
     try {
       const res = await axios.post(process.env.REACT_APP_BASE_URL + "user", data);
       console.log(res);
@@ -22,12 +25,15 @@ const Signup = () => {
         // alert("User successfully created");
         enqueueSnackbar("Successfully Signed Up", {variant:"success"})
         navigate("/login");
+        setLoading(false)
       }
     } catch (e) {
       console.log(e.response.data.message, ",=== e");
       // enqueueSnackbar(e.message, {variant:"error"})
       if (e.response.data.message)  enqueueSnackbar(e.response.data.message, {variant:"error"})
       // alert(e.message);
+      setLoading(false)
+
     }
   };
   return (
@@ -45,6 +51,7 @@ const Signup = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             ></input>
+            
             <input
               type="password"
               placeholder="Password"
@@ -52,13 +59,16 @@ const Signup = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             ></input>
-            <button
+            {loading ? (
+                <Spin spinning={loading} size="large"></Spin>
+            ): ( <button
               onClick={() => {
                 handleSignup();
               }}
             >
               Signup
-            </button>
+            </button>)}
+           
             
           </div>
           <div className="login-container-fields-right">
