@@ -37,10 +37,10 @@ const Header = () => {
             <span>Contact Us</span>
             </Link>
           
-            <Link style={{textDecoration:"none"}}  style={{display : user ? "none" : "block"}} to="/login">
+            <Link   style={{display : user ? "none" : "block",textDecoration:"none"}} to="/login">
             <span style={{display :  user ? "none" : "block"}}>Login</span>
             </Link>
-            <Link style={{textDecoration:"none"}}  style={{display :  user ? "none" : "block"}} to="/signup">
+            <Link  style={{display :  user ? "none" : "block", textDecoration:"none"}} to="/signup">
             <span style={{display :  user  ? "none" : "block"}}>SignUp</span>
             </Link>
 
