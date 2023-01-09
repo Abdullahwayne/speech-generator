@@ -30,7 +30,7 @@ export const userLogin = (credentails) => {
         process.env.REACT_APP_BASE_URL + "auth/login",
         credentails
       );
-      console.log(response, "<===== login");
+      // console.log(response, "<===== login");
       if (response.status === 200) {
         response.data.user.token = response.data.tokens.access.token;
         dispatch({ type: USER_CHANGED, payload: response.data.user });
