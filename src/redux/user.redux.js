@@ -1,11 +1,7 @@
 import axios from "axios";
 
 const initialState = {
-  user: {
-    email: "",
-    token: "",
-    isLoggedIn:false,
-  },
+  user: null,
 };
 
 export function userReducer(state = initialState, action) {
