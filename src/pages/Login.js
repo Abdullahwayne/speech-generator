@@ -26,7 +26,7 @@ const Login = () => {
   const handleLogin = async () => {
     try{
       setLoading(true)
-    console.log(email, password);
+    // console.log(email, password);
     const response = await dispatch(userLogin({ email, password }));
     const validatedData = await loginValidations.validate({email,password});
 
@@ -41,7 +41,7 @@ const Login = () => {
 
       enqueueSnackbar("Incorrect Email or Password" , {variant:"error"})
     }
-    console.log(response);
+    // console.log(response);
   } catch (e) {
     setLoading(false)
 
@@ -96,11 +96,11 @@ const Login = () => {
               {/* <img src={google} alt="" />  */}
               <GoogleLogin
         onSuccess={(credentialResponse) => {
-          console.log(credentialResponse);
+          // console.log(credentialResponse);
         }}
         style={{background:"purple"}}
         onError={() => {
-          console.log("Login Failed");
+          // console.log("Login Failed");
         }}
       />
           

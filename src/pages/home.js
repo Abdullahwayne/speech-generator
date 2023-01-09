@@ -23,7 +23,7 @@ const mockVal = (str, repeat = 1) => ({
 });
 const Home = () => {
   const user = useSelector(getUser);
-  console.log(user, "user incoming");
+  // console.log(user, "user incoming");
   const navigate = useNavigate();
   const [value, setValue] = useState("");
   const [question, setQuery] = useState("");
@@ -39,13 +39,13 @@ const Home = () => {
   const [isEmpty, setIsEmpty] = useState(false);
   const [password, setPassword] = useState("");
   const handleLogin = async () => {
-    console.log(email, password);
+    // console.log(email, password);
     const response = await dispatch(userLogin({ email, password }));
     if (response.status === 200) {
      enqueueSnackbar("Successfully Logged In " , {variant:"success"})
       setOpen(false);
     }
-    console.log(response);
+    // console.log(response);
   };
 
   const [occassion, setOccassion] = useState([
@@ -244,7 +244,7 @@ const Home = () => {
     );
   };
   const onSelect = (data) => {
-    console.log("onSelect", data);
+    // console.log("onSelect", data);
   };
   const onChange = (data) => {
     setValue(data);
@@ -272,7 +272,7 @@ const Home = () => {
   const loggedIn = async () => {
     await dispatch({ type: USER_CHANGED, payload: { email, password } });
   };
-  console.log(loggedIn, "checking login");
+  // console.log(loggedIn, "checking login");
   // const [selectedOccasion, setSelectedOccasion] = useState("");
   // const [selectedAtmosphere, setSelectedAtmosphere] = useState("");
   // const [selectedRelation, setSelectedRelation] = useState("");
@@ -296,7 +296,7 @@ const Home = () => {
         );
         setLoading(false);
 
-        console.log(res.data.reply, "<======== res");
+        // console.log(res.data.reply, "<======== res");
         setLoading(false);
         //   alert(res.data.reply);
         setReply(res.data.reply);
@@ -308,9 +308,9 @@ const Home = () => {
     } catch (e) {
         setLoading(false);
         setErrors(e)
-      console.log(e);
+      // console.log(e);
     //   console.log(e.response.data, "<==== data");
-      console.log(e.status);
+      // console.log(e.status);
      setTimeout( enqueueSnackbar(e.message, {variant:"error"})  , 3000)
       
       
@@ -323,7 +323,7 @@ const Home = () => {
       
         navigate("/login");
       }
-      console.log(e.status);
+      // console.log(e.status);
     //   alert(e)
     }
   };
@@ -486,7 +486,7 @@ const Home = () => {
             <Checkbox
               onClick={() => {
                 setChecked(!checked);
-                console.log(checked, "changing");
+                // console.log(checked, "changing");
               }}
               style={{
                 display: checked ? "none" : "flex",
@@ -582,11 +582,11 @@ const Home = () => {
                 <div className="login-container-fields-right">
                 <GoogleLogin
         onSuccess={(credentialResponse) => {
-          console.log(credentialResponse);
+          // console.log(credentialResponse);
         }}
         style={{background:"purple"}}
         onError={() => {
-          console.log("Login Failed");
+          // console.log("Login Failed");
         }}
       />
                   {/* <button>

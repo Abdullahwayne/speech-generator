@@ -20,7 +20,7 @@ const Signup = () => {
     setLoading(true)
     try {
       const res = await axios.post(process.env.REACT_APP_BASE_URL + "user", data);
-      console.log(res);
+      // console.log(res);
       if (res.status === 201) {
         // alert("User successfully created");
         enqueueSnackbar("Successfully Signed Up", {variant:"success"})
@@ -28,7 +28,7 @@ const Signup = () => {
         setLoading(false)
       }
     } catch (e) {
-      console.log(e.response.data.message, ",=== e");
+      // console.log(e.response.data.message, ",=== e");
       // enqueueSnackbar(e.message, {variant:"error"})
       if (e.response.data.message)  enqueueSnackbar(e.response.data.message, {variant:"error"})
       // alert(e.message);
