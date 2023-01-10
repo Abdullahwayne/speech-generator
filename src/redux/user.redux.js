@@ -2,12 +2,23 @@ import axios from "axios";
 
 const initialState = {
   user: null,
+  chat: {
+    selectedAtmosphere: "",
+    selectedOccasion: "",
+    selectedRelation: "",
+    selectedRole: "",
+    selectedReligion: "",
+  },
 };
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {
-    case USER_CHANGED:
+    case USER_CHANGED: {
       return { ...state, user: action.payload };
+    }
+    case QUERY_VARIABLE: {
+      return { ...state, chat: action.payload };
+    }
     default:
       return state;
   }
@@ -15,11 +26,12 @@ export function userReducer(state = initialState, action) {
 
 //selectors
 export const getUser = (state) => state.user.user;
+export const getQuery=(state)=>state.user.chat; 
 
 //wow
 
 export const USER_CHANGED = "user/userLogin";
-
+export const QUERY_VARIABLE = "user/queryString";
 
 //actions creator
 
@@ -42,3 +54,8 @@ export const userLogin = (credentails) => {
   };
 };
 
+//action
+
+export const queryVariableChange = (chat) => {
+  return { type: QUERY_VARIABLE, payload: chat };
+};

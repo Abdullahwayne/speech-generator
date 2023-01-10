@@ -22,15 +22,15 @@
     flex: 0 0 30%;
 }
 
-span.ant-select-selection-search::after {
-    content: url('../../assets/inputa.gif');
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    top: 5px;
-    right: 0;
+// span.ant-select-selection-search::after {
+//     content: url('../../assets/inputa.gif');
+//     width: 30px;
+//     height: 30px;
+//     position: absolute;
+//     top: 5px;
+//     right: 0;
 
-}
+// }
 span.ant-select-selection-placeholder{
     color: maroon !important;
 }
@@ -70,6 +70,8 @@ span.ant-select-selection-placeholder{
         width: 100%;
         // padding-left: 12rem;
         padding-top: 20px;
+        padding-bottom: 20px;
+
         button{
             padding: 15px;
             width: 20%;
